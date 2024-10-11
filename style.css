@@ -41,6 +41,7 @@ header {
     color: #4CAF53;
     font-weight: bold;
     margin-top: 3px;
+    text-shadwo: 1px 3px 1px rgba(5,5,5,0.7);
 }
 
 
