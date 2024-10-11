@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <script src="telegram-web-app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced TrexYield</title>
+    <link rel="stylesheet" href="style.css">
+</head> 
+<body>
+    <header>
+        <img src="TrexYield-logo.png" alt="TrexYield Logo" class="logo">
+    </header>
+    <div class="container">
+        <span id="counter">0</span>
+
+        <!-- Прогресс-бар -->
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+        </div>
+
+        <!-- Кнопка клика -->
+        <button id="clickButton">
+            <img src="dino-button.png" alt="Dino Button" id="dinoImage">
+        </button>
+        
+        <!-- Всплывающее сообщение -->
+        <div id="popupMessage" class="popup-message"></div>
+
+        <!-- Кнопка для сброса прогресса -->
+        <button id="resetButton" class="reset-button">Reset Progress</button>
+    </div>
+    <audio id="clickSound" src="click-sound.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<header>
+
+    <div class="version-info">
+        Ver 0.3.3 - 11.10.24
+    </div>
+</header>
+<!-- Информация об авторстве -->
+<footer>
+    <div class="author-info">
+        Developed by Satoshi Nakamoto & ChatGPT
+    </div>
+</footer>
