@@ -3,17 +3,17 @@ const maxClicks = 1000;
 const originalImage = 'dino-button.png'; // Исходное изображение
 const altImage = 'dino-alt.png'; // Альтернативное изображение
 
-// Загружаем прогресс из LocalStorage при загрузке страницы
+// Загружаем прогресс из CloudStorage при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
-    const savedCounter = localStorage.getItem('counter'); // Получаем значение счётчика из LocalStorage
+    const savedCounter = CloudStorage.getItem('counter'); // Получаем значение счётчика из CloudStorage
     if (savedCounter) {
         counter = parseInt(savedCounter, 10); // Преобразуем строку в число
         document.getElementById('counter').textContent = counter; // Обновляем отображение счётчика
         updateProgressBar(); // Обновляем прогресс-бар в соответствии с сохранённым значением
     }
 
-    // Проверка на существование альтернативного изображения в LocalStorage
-    const savedImage = localStorage.getItem('altImage');
+    // Проверка на существование альтернативного изображения в CloudStorage
+    const savedImage = CloudStorage.getItem('altImage');
     if (savedImage) {
         document.getElementById('dinoImage').src = savedImage; // Загружаем сохраненное изображение, если оно есть
     }
@@ -33,7 +33,7 @@ clickButton.addEventListener('pointerdown', () => {
 
         // Меняем изображение на альтернативное при нажатии
         dinoImage.src = altImage;
-        localStorage.setItem('altImage', altImage); // Сохраняем новое изображение в LocalStorage
+        CloudStorage.setItem('altImage', altImage); // Сохраняем новое изображение в CloudStorage
 
         // Анимация увеличения счетчика
         document.getElementById('counter').style.animation = 'none';
@@ -94,8 +94,8 @@ document.getElementById('resetButton').addEventListener('click', resetProgress);
 
 // Функция для сброса прогресса
 function resetProgress() {
-    localStorage.removeItem('counter'); // Удаляем сохранённый прогресс
-    localStorage.removeItem('altImage'); // Удаляем сохранённое изображение
+    CloudStorage.removeItem('counter'); // Удаляем сохранённый прогресс
+    CloudStorage.removeItem('altImage'); // Удаляем сохранённое изображение
     counter = 0; // Сбрасываем счётчик
     document.getElementById('counter').textContent = counter; // Обновляем отображение счётчика
     updateProgressBar(); // Обновляем прогресс-бар
@@ -113,7 +113,7 @@ document.querySelectorAll('#dinoImage, #clickButton, #resetButton').forEach(elem
     element.addEventListener('copy', (e) => e.preventDefault()); // Отключаем копирование текста
 });
 
-// Функция debounce для оптимизации сохранений в LocalStorage
+// Функция debounce для оптимизации сохранений в CloudStorage
 function debounce(func, delay) {
     let timeout;
     return function() {
@@ -124,5 +124,5 @@ function debounce(func, delay) {
 
 // Дебаунс-функция для сохранения прогресса
 const debounceSaveProgress = debounce(() => {
-    localStorage.setItem('counter', counter); // Сохраняем прогресс с задержкой
+    CloudStorage.setItem('counter', counter); // Сохраняем прогресс с задержкой
 }, 500);
