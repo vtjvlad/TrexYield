@@ -225,3 +225,4 @@ document.addEventListener('DOMContentLoaded', () => {
         Telegram.WebApp.close(); // Закрываем WebApp
     });
 });
+
