@@ -228,81 +228,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+window.addEventListener('load', () => {
+  const input = document.getElementById('input');
+  const info = document.getElementById('info');
+  const set = document.getElementById('set');
+  const get = document.getElementById('get');
+  const del = document.getElementById('del');
 
-window.addEventListener('load' () =>{
-    
+  const cloudStorage = window.telegram.webApp.CloudStorage;
 
+  const key = 'key'; // исправлено имя переменной
 
-const input = getElementById('input');
-const info = getElementById('info');
-const set = getElementById('set');
-const get = getElementById('get');
-const del = getElementById('del');
+  // Save key: value
+  set.addEventListener('click', () => {
+    if (input.value.length > 0) {
+      cloudStorage.setItem(key, input.value, (error, result) => {
+        info.innerHTML = !error && result
+          ? '<span class="green">Saved</span>'
+          : `<span class="red">${error}</span>`;
+      });
+    } else {
+      info.innerHTML = '<span class="red">Пусто</span>';
+    }
+  });
 
-const cloudStorage = window.telegram.webApp.CloudStorage;
+  // Read key: value
+  get.addEventListener('click', () => {
+    cloudStorage.getItem(key, (error, data) => { // исправлено имя метода
+      info.innerHTML = !error && data
+        ? `<span class="blue">${data}</span>`
+        : `<span class="red">${error}</span>`;
+    });
+  });
 
-const kay = 'kay'
-
-
-set.addEventListener( 'click', () =>{
-     if (input.value.length > 0) {
-cloudStorage.setItem(kay, input.value,
-(error, result) => {
-info. innerHTML = !error && result ? 
-'<span class="green">Saved<span>' : error
-}); 
-} else {
-     info.innerHTML = '<span class="red">Пусто<span>';
-}
-});
-
-// Read key: value
-get.addEventListener('click', () =>{
-    
-  cloudStorage.getIten(kay, (error, data) => {
-
-    info.innerHTML = !error && data ? data : error ;
+  // Delete key: value
+  del.addEventListener('click', () => {
+    cloudStorage.removeItem(key, (error, result) => { // исправлено имя метода
+      info.innerHTML = !error && result
+        ? '<span class="orange">Deleted</span>'
+        : `<span class="red">${error}</span>`;
+    });
   });
 });
-// Delete key:value
-  del.addEventListener ('click', () =>{
-    cloudStorage.removeltem(kay,
-(error, result)  => {
-  info. innerHTML = !error && result?
-  '<span class="orange">Deleted<span>' : error;
-  
-});
-});
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
