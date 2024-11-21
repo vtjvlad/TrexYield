@@ -9,7 +9,8 @@ body {
     align-items: center;
     transition: background-color 0.3s ease;
     touch-action: manipulation;
-    overflow: hidden; /* Запрет на прокрутку страницы */
+    overflow: hidden;
+    text-align: center;/* Запрет на прокрутку страницы */
 }
 
 header {
