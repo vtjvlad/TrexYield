@@ -2,7 +2,7 @@ let counter = 0;
 const maxClicks = 1000;
 const originalImage = 'dino-button.png'; // Исходное изображение
 const altImage = 'dino-alt.png'; // Альтернативное изображение
-
+const cloudStorage = window.telegram.webApp.CloudStorage;
 // Загружаем прогресс из CloudStorage при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     const savedCounter = CloudStorage.getItem('counter'); // Получаем значение счётчика из CloudStorage
@@ -235,7 +235,7 @@ window.addEventListener('load', () => {
   const get = document.getElementById('get');
   const del = document.getElementById('del');
 
-  const cloudStorage = window.telegram.webApp.CloudStorage;
+  
 
   const key = 'key'; // исправлено имя переменной
 
