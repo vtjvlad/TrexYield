@@ -350,3 +350,7 @@ height: 35px;
 width: 400px;
 heigh: 100px;
 }
+
+.btn button:hover {
+    background-color: #996633;
+}
