@@ -1,86 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8">
-    <title>Enhanced TrexYield</title>
-    <link rel="stylesheet" href="style.css">
-     <script>
-      window.Telegram.WebApp.expand();
-
-      window.Telegram.WebApp.headerColor = "#171f2a";
-
-      window.Telegram.WebApp.setHeaderColor("#171f2a");
-
-      if (window.Telegram.WebApp.isVersionAtLeast("7.7")){
-
-    window.Telegram.WebApp.disableVerticalSwipes();
-
-      }
-
-      if (window.Telegram.WebApp.isVersionAtLeast("8.0")){
-
-        try {
-
-          window.Telegram.WebApp.requestFullscreen();
-
-        } catch (e) {
-
-          console.log(e, "1");
-
-        }
-
-      }
-    </script>
-</head> 
-<body>
-    <header>
-            </header>
-
-
-     <label for="input">Input:</label> <input id="input" type="text">
-<div class ="btn">
-  <button type="submit" class="xxx" id="set">set
-</button>
-   <button type="submit" class="xxx" id="get">get
-</button>
- <button type="submit" class="xxx" id="del">Delete
-</button>
-</div>
-
-
-	<div><b>Console:</b></div>
-<div id="info" class="info">---</div>
-
-
-    <div class="container">
-        <span id="counter">0</span>
-
-        <!-- Прогресс-бар -->
-        <div class="progress-bar">
-            <div class="progress-bar-fill" id="progressBarFill"></div>
-        </div>
-
-        <!-- Кнопка клика -->
-        <button id="clickButton">
-            <img src="dino-button.png" alt="Dino Button" id="dinoImage">
-        </button>
-        
-        <!-- Всплывающее сообщение -->
-        <div id="popupMessage" class="popup-message"></div>
-
-        <!-- Кнопка для сброса прогресса -->
-        <button id="resetButton" class="reset-button">Reset Progress</button>
-    </div>
-    <audio id="clickSound" src="click-sound.mp3"></audio>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMA | CloudStorage | kay:value</title>
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="script.js"></script>
+</head>
+<body>
+    <label for="input">Input: </label><input id="input" type="text">
+    <div class="btn">
+        <button id="set">Set</button>
+        <button id="get">Get</button>
+        <button id="del">Del</button>
+    </div>
+    <div><b>Console:</b></div>
+    <div id="info" class="info">-</div>
 </body>
 </html>
-
-<header>
-</header>
-<!-- Информация об авторстве -->
-<footer>
-</footer>
