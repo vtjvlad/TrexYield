@@ -6,6 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <title>Enhanced TrexYield</title>
     <link rel="stylesheet" href="style.css">
+     <script>
+      window.Telegram.WebApp.expand();
+
+      window.Telegram.WebApp.headerColor = "#171f2a";
+
+      window.Telegram.WebApp.setHeaderColor("#171f2a");
+
+      if (window.Telegram.WebApp.isVersionAtLeast("7.7")){
+
+    window.Telegram.WebApp.disableVerticalSwipes();
+
+      }
+
+      if (window.Telegram.WebApp.isVersionAtLeast("8.0")){
+
+        try {
+
+          window.Telegram.WebApp.requestFullscreen();
+
+        } catch (e) {
+
+          console.log(e, "1");
+
+        }
+
+      }
+    </script>
 </head> 
 <body>
     <header>
