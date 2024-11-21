@@ -83,7 +83,7 @@ function getRandomColor() {
 }
 
 // Функция для обновления прогресс-бара
-function updateProgressBar() {
+function updeateProgressBar() {
     const progressBarFill = document.getElementById('progressBarFill');
     const progressPercentage = (counter / maxClicks) * 100;
     progressBarFill.style.width = `${progressPercentage}%`;
@@ -226,6 +226,83 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const
-const
-const
+
+
+
+window.addEventListener('load' () =>{
+    
+
+
+const input = getElementById('input');
+const info = getElementById('info');
+const set = getElementById('set');
+const get = getElementById('get');
+const del = getElementById('del');
+
+const cloudStorage = window.telegram.webApp.CloudStorage;
+
+const kay = 'kay'
+
+
+set.addEventListener( 'click', () =>{
+     if (input.value.length > 0) {
+cloudStorage.setItem(kay, input.value,
+(error, result) => {
+info. innerHTML = !error && result ? 
+'<span class="green">Saved<span>' : error
+}); 
+} else {
+     info.innerHTML = '<span class="red">Пусто<span>';
+}
+});
+
+// Read key: value
+get.addEventListener('click', () =>{
+    
+  cloudStorage.getIten(kay, (error, data) => {
+
+    info.innerHTML = !error && data ? data : error ;
+  });
+});
+// Delete key:value
+  del.addEventListener ('click', () =>{
+    cloudStorage.removeltem(kay,
+(error, result)  => {
+  info. innerHTML = !error && result?
+  '<span class="orange">Deleted<span>' : error;
+  
+});
+});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
