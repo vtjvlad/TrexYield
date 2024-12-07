@@ -1,25 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Auth</title>
 </head>
 <body>
-    <h1>Регистрация</h1>
-    <form id="registerForm">
-        <label for="username">Имя пользователя:</label>
-        <input type="text" id="username" name="username" required><br><br>
+  <div id="app">
+    <h1>Добро пожаловать!</h1>
+    <p>Ожидание данных из Telegram...</p>
+  </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+  <script>
+    // Инициализация Telegram WebApp
+    if (window.Telegram && window.Telegram.WebApp) {
+      const user = window.Telegram.WebApp.initDataUnsafe.user;
 
-        <label for="password">Пароль:</label>
-        <input type="password" id="password" name="password" required><br><br>
+      // Отображаем данные пользователя
+      if (user) {
+        document.getElementById("app").innerHTML = `
+          <h1>Привет, ${user.first_name} ${user.last_name || ""}!</h1>
+          <p>Ваш Telegram ID: ${user.id}</p>
+          <p>Ваше имя пользователя: @${user.username || "не указано"}</p>
+        `;
 
-        <button type="submit">Зарегистрироваться</button>
-    </form>
-
-    <script scr="script.js"></script>
+        // Отправляем данные на сервер
+        fetch("http://localhost:5000/api/auth/telegram", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id: user.id,
+            username: user.username,
+            first_name: user.first_name,
+            last_name: user.last_name,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              console.log("Пользователь успешно авторизован:", data.user);
+            } else {
+              console.error("Ошибка авторизации:", data.error);
+            }
+          });
+      } else {
+        document.getElementById("app").innerHTML = "<p>Данные пользователя не найдены.</p>";
+      }
+    } else {
+      document.getElementById("app").innerHTML = "<p>Telegram WebApp не поддерживается.</p>";
+    }
+  </script>
 </body>
 </html>
