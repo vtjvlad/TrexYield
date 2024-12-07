@@ -35,52 +35,47 @@
     </script>
 </head> 
 <body>
-    <header>
-            </header>
+    <h1>Регистрация</h1>
+    <form id="registerForm">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required><br><br>
 
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
 
-     <label for="input">Input:</label> <input id="input" type="text">
-<div class ="btn">
-  <button type="submit" class="xxx" id="set">set
-</button>
-   <button type="submit" class="xxx" id="get">get
-</button>
- <button type="submit" class="xxx" id="del">Delete
-</button>
-</div>
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required><br><br>
 
+        <button type="submit">Зарегистрироваться</button>
+    </form>
 
-	<div><b>Console:</b></div>
-<div id="info" class="info">---</div>
+    <script>
+        const form = document.getElementById('registerForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-    <div class="container">
-        <span id="counter">0</span>
+            try {
+                const response = await fetch('http://localhost:5000/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password }),
+                });
 
-        <!-- Прогресс-бар -->
-        <div class="progress-bar">
-            <div class="progress-bar-fill" id="progressBarFill"></div>
-        </div>
-
-        <!-- Кнопка клика -->
-        <button id="clickButton">
-            <img src="dino-button.png" alt="Dino Button" id="dinoImage">
-        </button>
-        
-        <!-- Всплывающее сообщение -->
-        <div id="popupMessage" class="popup-message"></div>
-
-        <!-- Кнопка для сброса прогресса -->
-        <button id="resetButton" class="reset-button">Reset Progress</button>
-    </div>
-    <audio id="clickSound" src="click-sound.mp3"></audio>
-
-    <script src="script.js"></script>
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                } else {
+                    alert(`Ошибка: ${result.message}`);
+                }
+            } catch (err) {
+                alert('Ошибка подключения к серверу');
+                console.error(err);
+            }
+        });
+    </script>
 </body>
 </html>
-
-<header>
-</header>
-<!-- Информация об авторстве -->
-<footer>
-</footer>
