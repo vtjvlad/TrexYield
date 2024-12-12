@@ -1,55 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telegram Auth</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
 </head>
 <body>
-  <div id="app">
-    <h1>Добро пожаловать!</h1>
-    <p>Ожидание данных из Telegram...</p>
-  </div>
 
-  <script>
-    // Инициализация Telegram WebApp
-    if (window.Telegram && window.Telegram.WebApp) {
-      const user = window.Telegram.WebApp.initDataUnsafe.user;
+<h1>Интернет-магазин</h1>
 
-      // Отображаем данные пользователя
-      if (user) {
-        document.getElementById("app").innerHTML = `
-          <h1>Привет, ${user.first_name} ${user.last_name || ""}!</h1>
-          <p>Ваш Telegram ID: ${user.id}</p>
-          <p>Ваше имя пользователя: @${user.username || "не указано"}</p>
-        `;
+<div id="auth-block">
+    <button onclick="showRegistrationForm()">Регистрация</button>
+    <button onclick="showLoginForm()">Вход</button>
+</div>
 
-        // Отправляем данные на сервер
-        fetch("http://165.154.244.219:443/api/auth/telegram", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            id: user.id,
-            username: user.username,
-            first_name: user.first_name,
-            last_name: user.last_name,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              console.log("Пользователь успешно авторизован:", data.user);
-            } else {
-              console.error("Ошибка авторизации:", data.error);
-            }
-          });
-      } else {
-        document.getElementById("app").innerHTML = "<p>Данные пользователя не найдены.</p>";
-      }
-    } else {
-      document.getElementById("app").innerHTML = "<p>Telegram WebApp не поддерживается.</p>";
-    }
-  </script>
+<div id="registration-form" style="display:none;">
+    <h2>Регистрация</h2>
+    <form id="registrationForm">
+        <input type="text" id="reg-username" placeholder="Имя пользователя" required>
+        <input type="email" id="reg-email" placeholder="Email" required>
+        <input type="password" id="reg-password" placeholder="Пароль" required>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</div>
+
+<div id="login-form" style="display:none;">
+    <h2>Вход</h2>
+    <form id="loginForm">
+        <input type="text" id="login-input" placeholder="Имя пользователя или Email" required>
+        <input type="password" id="login-password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+    </form>
+</div>
+
+<div id="protected-content" style="display:none;">
+    <h2>Защищенный контент</h2>
+    <p>Добро пожаловать, <span id="username-display"></span>!</p>
+    <button onclick="accessProtectedContent()">Получить данные</button>
+    <pre id="protected-data"></pre>
+
+    <button onclick="logout()">Выйти</button> <--- Добавлена кнопка "Выйти" --->
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
