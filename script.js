@@ -1,4 +1,4 @@
-const apiUrl = 'http://165.154.244.219:443'; // URL вашего сервера
+const apiUrl = 'https://165.154.244.219'; // URL вашего сервера
 
 function showRegistrationForm() {
     document.getElementById('registration-form').style.display = 'block';
