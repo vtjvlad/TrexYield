@@ -1,4 +1,4 @@
-const apiUrl = 'https://vtjvlad.ddns.net'; // URL вашего сервера
+const apiUrl = 'https://vtjvlad.ddns.net/api'; // URL вашего сервера
 
 function showRegistrationForm() {
     document.getElementById('registration-form').style.display = 'block';
